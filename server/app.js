@@ -1,7 +1,23 @@
+const dotenv = require("dotenv");
 const express = require("express");
-// const dotenv=require("dotenv");
 const app = express();
-const port = 3000;
+// const port = 3000;
+
+dotenv.config({path: 'server/config.env'});
+require('./db/conn');
+// const mongoose = require("mongoose");
+// const db= process.env.DATABASE;
+const PORT= process.env.PORT;
+
+// const db="mongodb+srv://tonygupta275:zoAcRqDwTeldGSC2@cluster0.6efrmtj.mongodb.net/";
+
+// mongoose
+//   .connect(db)
+//   .then(() => console.log("DB connected"))
+//   .catch((err) => console.log(err));
+
+
+
 
 //middelware
 
@@ -10,7 +26,6 @@ const middleware = (req, res, next) => {
   next();
 }
 
-// middleware();
 
 //routes
 app.get("/", (req, res) => {
@@ -34,14 +49,6 @@ app.get("/signup", (req, res) => {
 
 
 //listening to port number 3000
-app.listen(3000, () => {
-  console.log(`Express server listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Express server listening on port ${PORT}`);
 });
-
-const mongoose = require("mongoose");
-
-
-mongoose
-  .connect("mongodb+srv://tonygupta275:zoAcRqDwTeldGSC2@cluster0.6efrmtj.mongodb.net/")
-  .then(() => console.log("DB connected"))
-  .catch((err) => console.log(err));
